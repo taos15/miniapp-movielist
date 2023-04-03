@@ -1,0 +1,12 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: group6
+      POSTGRES_DB: group6db
+      POSTGRES_PASSWORD: password
