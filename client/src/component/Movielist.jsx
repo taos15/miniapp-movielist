@@ -23,7 +23,7 @@ export function Movielist() {
   };
 
   let filteredMovie = apiMovies?.filter((movie) =>
-    movie.title.toLowerCase().includes(searchInput)
+    movie.title?.toLowerCase().includes(searchInput)
   );
 
   const newAPIMovies = filteredMovie?.map((movie, index) => {

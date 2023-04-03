@@ -21,7 +21,7 @@ app.get('/api/v1/movies', async (req, res) => {
   }
 });
 app.post('/api/v1/movies', async (req, res) => {
-  // const { movie } = req.params;
+  console.log(req.body);
   try {
     await controller.postMovies(req.body);
     res.status(201).send(req.body);
