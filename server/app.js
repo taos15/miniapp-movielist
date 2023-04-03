@@ -29,5 +29,15 @@ app.post('/api/v1/movies', async (req, res) => {
     console.log(err);
   }
 });
+app.delete('/api/v1/movies/:title', async (req, res) => {
+  const { title } = req.params;
+  console.log(`Movie ${title} was deleted if it existed.`);
+  try {
+    await controller.deleteMovies(title);
+    res.status(200).send(req.params.movie);
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 module.exports = app;

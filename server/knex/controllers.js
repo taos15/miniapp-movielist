@@ -6,5 +6,8 @@ const movieList = () => {
 const postMovies = (movie) => {
   return knex('movies').insert(movie);
 };
+const deleteMovies = (title) => {
+  return knex('movies').where({ title: title }).del();
+};
 
-module.exports = { movieList, postMovies };
+module.exports = { movieList, postMovies, deleteMovies };
