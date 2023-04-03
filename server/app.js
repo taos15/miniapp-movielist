@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
-const movieList = require('./knex/controllers');
+const controller = require('./knex/controllers');
 const app = express();
 
 app.use(morgan('tiny'));
@@ -14,10 +14,20 @@ app.get('/', (req, res) => {
 
 app.get('/api/v1/movies', async (req, res) => {
   try {
-    const movies = await movieList();
+    const movies = await controller.movieList();
     res.status(200).send(JSON.stringify(movies));
   } catch (err) {
     console.log(err);
   }
 });
+app.post('/api/v1/movies', async (req, res) => {
+  // const { movie } = req.params;
+  try {
+    await controller.postMovies(req.body);
+    res.status(201).send(req.body);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 module.exports = app;
