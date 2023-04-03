@@ -1,22 +1,24 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 export function Movielist() {
-  const movies = [
-    { title: 'Mean Girls' },
-    { title: 'Hackers' },
-    { title: 'The Grey' },
-    { title: 'Sunshine' },
-    { title: 'Ex Machina' },
-  ];
+  const [apiMovies, setApiMovies] = useState(null);
 
-  const newMovies = movies.map((movie, index) => {
-    const movieName = movie.title
+  const moviesFetch = async () => {
+    const res = await axios.get('http://localhost:8080/api/v1/movies');
+    const data = await res.data;
+    setApiMovies(data);
+    return data;
+  };
+  useEffect(() => {
+    moviesFetch();
+  }, []);
 
-    return <div key={index}>{movieName}</div>
+  const newAPIMovies = apiMovies?.map((movie, index) => {
+    const movieName = movie.title;
 
-  })
+    return <div key={index}>{movieName}</div>;
+  });
 
-  return (
-  <>
-  {newMovies}
-  </>
-  );
+  // component return
+  return <>{newAPIMovies}</>;
 }
