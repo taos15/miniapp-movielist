@@ -1,2 +1,2 @@
-const knext = require('knex')
+const knext = require('./dbConnection')
 
